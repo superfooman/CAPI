@@ -12,25 +12,31 @@ extern "C" {
 #else
 #define DECLDLL __declspec(dllexport)
 #endif
+#else
+#define MOVINGAVG_EXPORT
 #endif
 
-    DECLDLL typedef struct
-    {
-        int Size;
-        int* InputArrPtr;
-        int Window;
-        int* MovingWindowArr;
+#include<stdlib.h>
 
-    }MovingAvgIn;
+DECLDLL typedef struct
+{
+    int Size;
+    int* InputArrPtr;
+    int Window;
+    int* MovingWindowArr;
 
-    DECLDLL typedef struct
-    {
-        double* OutputArrPtr;
-    }MvoingAvgOut;
+}MovingAvgIn;
 
-    DECLDLL void MovingAvgArr(int* inputArr, int inputArrLength, int* movingWindowArr, int movingWindow, double* outputArry);
+DECLDLL typedef struct
+{
+    double* OutputArrPtr;
+}MvoingAvgOut;
 
-    DECLDLL void FreeObject(void* obj);
+DECLDLL double movingAvgCal(int* movingWindowArr, double* ptrSum, int pos, int len, int nextNum);
+
+DECLDLL void MovingAvgArr(int* inputArr, int inputArrLength, int* movingWindowArr, int movingWindow, double* outputArry);
+
+DECLDLL void FreeObject(void* obj);
 
 #ifdef __cplusplus
 }
