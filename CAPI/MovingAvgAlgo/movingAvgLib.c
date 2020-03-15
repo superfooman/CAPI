@@ -5,11 +5,16 @@
 extern "C" {
 #endif
 
-DECLDLL double movingAvgCal(int* movingWindowArr, double* ptrSum, int pos, int len, int nextNum)
+double movingAvgCal(int* movingWindowArr, double* ptrSum, int pos, int len, int nextNum)
 {
     *ptrSum = *ptrSum - movingWindowArr[pos] + nextNum;
     movingWindowArr[pos] = nextNum;
     return *ptrSum / len;
+}
+
+void FreeObject(void* obj)
+{
+    free(obj);
 }
 
 DECLDLL void MovingAvgArr(int* inputArr, int inputArrLength, int* movingWindowArr, int movingWindow, double* outputArry)
@@ -26,11 +31,6 @@ DECLDLL void MovingAvgArr(int* inputArr, int inputArrLength, int* movingWindowAr
             pos = 0;
         }
     }
-}
-
-DECLDLL void FreeObject(void* obj)
-{
-    free(obj);
 }
 
 #ifdef __cplusplus

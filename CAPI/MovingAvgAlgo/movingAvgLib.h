@@ -30,13 +30,10 @@ DECLDLL typedef struct
 DECLDLL typedef struct
 {
     double* OutputArrPtr;
+
 }MvoingAvgOut;
 
-DECLDLL double movingAvgCal(int* movingWindowArr, double* ptrSum, int pos, int len, int nextNum);
-
 DECLDLL void MovingAvgArr(int* inputArr, int inputArrLength, int* movingWindowArr, int movingWindow, double* outputArry);
-
-DECLDLL void FreeObject(void* obj);
 
 #ifdef __cplusplus
 }
