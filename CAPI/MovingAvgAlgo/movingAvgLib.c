@@ -33,6 +33,22 @@ DECLDLL void MovingAvgArr(int* inputArr, int inputArrLength, int* movingWindowAr
     }
 }
 
+DECLDLL void MovingAvgStruct(MovingAvgIn* movingAvgInput, MvoingAvgOut* movingAvgOutput)
+{
+    int pos = 0;
+    double sum = 0;
+
+    for (int i = 0; i < movingAvgInput->Size; i++)
+    {
+        movingAvgOutput->OutputArrPtr[i] = movingAvgCal(movingAvgInput->MovingWindowArr, &sum, pos, movingAvgInput->Window, movingAvgInput->InputArrPtr[i]);
+        pos++;
+        if (pos >= movingAvgInput->Window)
+        {
+            pos = 0;
+        }
+    }
+}
+
 #ifdef __cplusplus
 }
 #endif

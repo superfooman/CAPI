@@ -24,8 +24,8 @@ namespace CAPI
         }
 
         private const string dllName = @"C:\Users\bugab\source\repos\CAPI\CAPI\CAPI\CDLL\MovingAvgAlgo.dll";
-        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MovingAvgArr")]
-        internal extern static unsafe void MovingAvgArr(int* inputArr, int inputArrLength, int* movingWindowArr, int movingWindow, double* DoubleArr);
+        [DllImport(dllName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "MovingAvgStruct")]
+        internal extern static unsafe void MovingAvgStruct(ref MovingAvgInputParam APIInputParam, ref MovingAvgOutputParam APIOutputParam);
 
     }
     internal static class MovingAvgWrapper
@@ -48,8 +48,7 @@ namespace CAPI
                 intArrayCopy(movingWindowArray, inputParam.MovingWindowArray);
                 outputParam.OutputArray = (double*)Marshal.AllocHGlobal(arrayLength * sizeof(double));
 
-                MovingAvgAPI.MovingAvgArr(inputParam.InputArray, inputParam.Size, inputParam.MovingWindowArray,
-                    inputParam.Window, outputParam.OutputArray);
+                MovingAvgAPI.MovingAvgStruct(ref inputParam, ref outputParam);
                 
                 doublePtrCopy(outputParam.OutputArray, ref result, arrayLength);
 

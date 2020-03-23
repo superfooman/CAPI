@@ -35,6 +35,8 @@ DECLDLL typedef struct
 
 DECLDLL void MovingAvgArr(int* inputArr, int inputArrLength, int* movingWindowArr, int movingWindow, double* outputArry);
 
+DECLDLL void MovingAvgStruct(MovingAvgIn* movingAvgInput, MvoingAvgOut* movingAvgOutput);
+
 #ifdef __cplusplus
 }
 #endif
