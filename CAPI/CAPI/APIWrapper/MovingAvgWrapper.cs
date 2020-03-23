@@ -63,14 +63,17 @@ namespace CAPI
             {
                 if (inputParam.InputArray != (int*)IntPtr.Zero)
                 {
+                    Marshal.FreeHGlobal((IntPtr)inputParam.InputArray);
                     inputParam.InputArray = (int*)IntPtr.Zero;
                 }
                 if (inputParam.MovingWindowArray != (int*)IntPtr.Zero)
                 {
+                    Marshal.FreeHGlobal((IntPtr)inputParam.MovingWindowArray);
                     inputParam.MovingWindowArray = (int*)IntPtr.Zero;
                 }
                 if (outputParam.OutputArray != (double*)IntPtr.Zero)
                 {
+                    Marshal.FreeHGlobal((IntPtr)outputParam.OutputArray);
                     outputParam.OutputArray = (double*)IntPtr.Zero;
                 }
             }
